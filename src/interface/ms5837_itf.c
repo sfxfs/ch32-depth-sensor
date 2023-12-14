@@ -9,7 +9,7 @@
 #include <stdarg.h>
 #include <ch32v00x.h>
 
-#include "ms5837.h"
+#include <interface/ms5837_itf.h>
 
 #define I2CT_FLAG_TIMEOUT         ((uint32_t)(100000))
 
@@ -162,25 +162,25 @@ uint8_t ms5837_interface_iic_write(uint8_t addr, uint8_t reg, uint8_t *buf,
     I2C_GenerateSTART( I2C1, ENABLE);
 
     I2CTimeout = I2CT_FLAG_TIMEOUT;
-    while( !I2C_CheckEvent( I2C1, I2C_EVENT_MASTER_MODE_SELECT ) ) if ((--I2CTimeout) == 0) return 1;
+    while( !I2C_CheckEvent( I2C1, I2C_EVENT_MASTER_MODE_SELECT ) ) if ((--I2CTimeout) == 0) return 2;
 
     I2C_Send7bitAddress( I2C1, addr, I2C_Direction_Transmitter);
 
     I2CTimeout = I2CT_FLAG_TIMEOUT;
-    while( !I2C_CheckEvent( I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED ) ) if ((--I2CTimeout) == 0) return 1;
+    while( !I2C_CheckEvent( I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED ) ) if ((--I2CTimeout) == 0) return 3;
 
     I2C_SendData( I2C1, reg);
 
     for (uint8_t i = 0; i < len; i++)
     {
         I2CTimeout = I2CT_FLAG_TIMEOUT;
-        while (!I2C_CheckEvent( I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTING)) if ((--I2CTimeout) == 0) return 1;
+        while (!I2C_CheckEvent( I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTING)) if ((--I2CTimeout) == 0) return 4;
 
         I2C_SendData( I2C1, buf[i]);
     }
 
     I2CTimeout = I2CT_FLAG_TIMEOUT;
-    while( !I2C_CheckEvent( I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED ) ) if ((--I2CTimeout) == 0) return 1;
+    while( !I2C_CheckEvent( I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED ) ) if ((--I2CTimeout) == 0) return 5;
 
     I2C_GenerateSTOP( I2C1, ENABLE);
 

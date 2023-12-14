@@ -34,7 +34,7 @@
  * </table>
  */
 
-#include "ms5837.h"
+#include <driver/ms5837_drv.h>
 
 /**
  * @brief chip information definition
@@ -98,8 +98,10 @@ static uint8_t a_ms5837_iic_read(ms5837_handle_t *handle, uint8_t reg, uint8_t *
  */
 static uint8_t a_ms5837_iic_write(ms5837_handle_t *handle, uint8_t reg, uint8_t *data, uint16_t len)
 {
-    if (handle->iic_write(MS5837_ADDRESS, reg, data, len) != 0)       /* write the register */
+    uint8_t res = handle->iic_write(MS5837_ADDRESS, reg, data, len);
+    if (res != 0)       /* write the register */
     {
+        printf("error code: %d\r\n", res);
         return 1;                                                     /* return error */
     }
     else

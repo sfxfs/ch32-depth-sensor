@@ -37,7 +37,7 @@
 #ifndef DRIVER_MS5837_BASIC_H
 #define DRIVER_MS5837_BASIC_H
 
-#include "driver/ms5837.h"
+#include <driver/ms5837_drv.h>
 
 #ifdef __cplusplus
 extern "C"{
@@ -53,8 +53,8 @@ extern "C"{
 /**
  * @brief ms5837 basic example default definition
  */
-#define MS5837_BASIC_DEFAULT_TEMPERATURE_OSR        MS5837_OSR_4096        /**< 4096 */
-#define MS5837_BASIC_DEFAULT_PRESSURE_OSR           MS5837_OSR_4096        /**< 4096 */
+#define MS5837_BASIC_DEFAULT_TEMPERATURE_OSR        MS5837_OSR_8192        /**< 4096 */
+#define MS5837_BASIC_DEFAULT_PRESSURE_OSR           MS5837_OSR_8192        /**< 4096 */
 
 /**
  * @brief     basic example init

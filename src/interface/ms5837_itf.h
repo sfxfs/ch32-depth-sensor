@@ -5,8 +5,8 @@
  *      Author: ssfxfss
  */
 
-#ifndef USER_INTERFACE_MS5837_H_
-#define USER_INTERFACE_MS5837_H_
+#ifndef USER_INTERFACE_MS5837_ITF_H_
+#define USER_INTERFACE_MS5837_ITF_H_
 
 #include <stdint.h>
 
@@ -87,4 +87,4 @@ void ms5837_interface_debug_print(const char *const fmt, ...);
 }
 #endif
 
-#endif /* USER_INTERFACE_MS5837_H_ */
+#endif /* USER_INTERFACE_MS5837_ITF_H_ */

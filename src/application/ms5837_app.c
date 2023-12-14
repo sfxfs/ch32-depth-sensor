@@ -34,9 +34,9 @@
  * </table>
  */
 
-#include "driver/ms5837.h"
-#include "interface/ms5837.h"
-#include "application/ms5837.h"
+#include <application/ms5837_app.h>
+#include <driver/ms5837_drv.h>
+#include <interface/ms5837_itf.h>
 
 static ms5837_handle_t gs_handle;        /**< ms5837 handle */
 
@@ -65,7 +65,7 @@ uint8_t ms5837_basic_init(ms5837_type_t type)
     res = ms5837_init(&gs_handle);
     if (res != 0)
     {
-        ms5837_interface_debug_print("ms5837: init failed.\n");
+        ms5837_interface_debug_print("ms5837: init failed.\r\n");
 
         return 1;
     }
@@ -74,7 +74,7 @@ uint8_t ms5837_basic_init(ms5837_type_t type)
     res = ms5837_set_type(&gs_handle, type);
     if (res != 0)
     {
-        ms5837_interface_debug_print("ms5837: set type failed.\n");
+        ms5837_interface_debug_print("ms5837: set type failed.\r\n");
         (void)ms5837_deinit(&gs_handle);
 
         return 1;
@@ -84,7 +84,7 @@ uint8_t ms5837_basic_init(ms5837_type_t type)
     res = ms5837_set_temperature_osr(&gs_handle, MS5837_BASIC_DEFAULT_TEMPERATURE_OSR);
     if (res != 0)
     {
-        ms5837_interface_debug_print("ms5837: set temperature osr failed.\n");
+        ms5837_interface_debug_print("ms5837: set temperature osr failed.\r\n");
         (void)ms5837_deinit(&gs_handle);
 
         return 1;
@@ -94,7 +94,7 @@ uint8_t ms5837_basic_init(ms5837_type_t type)
     res = ms5837_set_pressure_osr(&gs_handle, MS5837_BASIC_DEFAULT_PRESSURE_OSR);
     if (res != 0)
     {
-        ms5837_interface_debug_print("ms5837: set pressure osr failed.\n");
+        ms5837_interface_debug_print("ms5837: set pressure osr failed.\r\n");
         (void)ms5837_deinit(&gs_handle);
 
         return 1;
