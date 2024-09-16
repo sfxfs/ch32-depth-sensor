@@ -1,5 +1,7 @@
-# ch32-ms5837
+# ch32-depth-sensor
 
-基于 CH32V003F4U6 将 IIC 的 MS5837 回传数据解算后通过 UART 传至上位机
+Based on the CH32V003F4U6, the project initializes and interfaces with various models of depth sensors, processes the data, and transmits it to a host machine via UART. It also supports data filtering algorithms, pressure calibration, and other functionalities.
 
-![img\pcb.png](https://raw.githubusercontent.com/sfxfs/ch32-ms5837/main/img/pcb.png)
+PCB Front Rendering（the depth sensor is on the back side）：
+
+<img src="https://raw.githubusercontent.com/sfxfs/ch32-ms5837/main/img/pcb.png" alt="img\pcb.png" style="zoom:60%;" />
